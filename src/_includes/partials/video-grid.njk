@@ -1,0 +1,18 @@
+{# Expects `videoList` to be set by the caller. #}
+<ul class="video-grid">
+  {%- for video in videoList %}
+  <li>
+    <a href="{{ video.url }}">
+      {%- if video.data.thumbnail %}
+      <img src="{{ video.data.thumbnail }}" alt="" loading="lazy">
+      {%- elif video.data.youtube %}
+      <img src="https://i.ytimg.com/vi/{{ video.data.youtube }}/hqdefault.jpg" alt="" loading="lazy">
+      {%- else %}
+      <span class="thumb-placeholder">▶</span>
+      {%- endif %}
+      <span class="video-title">{{ video.data.title }}</span>
+    </a>
+    <time datetime="{{ video.date | isoDate }}">{{ video.date | readableDate }}</time>
+  </li>
+  {%- endfor %}
+</ul>

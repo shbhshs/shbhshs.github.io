@@ -1,0 +1,17 @@
+/* Minimal Prism token colours that work in light and dark themes. */
+:root { --tk-comment: #6e7781; --tk-keyword: #cf222e; --tk-string: #0a3069; --tk-fn: #8250df; --tk-num: #0550ae; --tk-type: #953800; }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) { --tk-comment: #8b949e; --tk-keyword: #ff7b72; --tk-string: #a5d6ff; --tk-fn: #d2a8ff; --tk-num: #79c0ff; --tk-type: #ffa657; }
+}
+:root[data-theme="dark"] { --tk-comment: #8b949e; --tk-keyword: #ff7b72; --tk-string: #a5d6ff; --tk-fn: #d2a8ff; --tk-num: #79c0ff; --tk-type: #ffa657; }
+
+.token.comment, .token.prolog, .token.doctype, .token.cdata { color: var(--tk-comment); font-style: italic; }
+.token.keyword, .token.selector, .token.important, .token.atrule, .token.operator.arrow { color: var(--tk-keyword); }
+.token.string, .token.char, .token.attr-value, .token.regex, .token.url { color: var(--tk-string); }
+.token.function, .token.class-name { color: var(--tk-fn); }
+.token.number, .token.boolean, .token.constant, .token.symbol, .token.property { color: var(--tk-num); }
+.token.tag, .token.builtin, .token.attr-name, .token.variable { color: var(--tk-type); }
+.token.deleted { color: var(--tk-keyword); }
+.token.inserted { color: #1a7f37; }
+.token.bold { font-weight: 700; }
+.token.italic { font-style: italic; }

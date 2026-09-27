@@ -1,0 +1,8 @@
+{%- set visibleTags = tags | publicTags %}
+{%- if visibleTags.length %}
+<ul class="tag-list">
+  {%- for tag in visibleTags %}
+  <li><a href="/tags/{{ tag | slugify }}/">#{{ tag }}</a></li>
+  {%- endfor %}
+</ul>
+{%- endif %}
