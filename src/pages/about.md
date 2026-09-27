@@ -1,5 +1,5 @@
 ---
-layout: layouts/page.njk
+layout: layouts/about.njk
 title: About
 permalink: /about/
 ---
@@ -18,4 +18,4 @@ and the occasional video about things I'm building or learning.
 
 ## Get in touch
 
-The best way to reach me is via [GitHub](https://github.com/shbhshs).
+The easiest way to reach me is through any of the links on this page — I read everything.
