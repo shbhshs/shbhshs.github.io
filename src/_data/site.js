@@ -12,8 +12,6 @@ export default {
     avatar: "/assets/img/avatar.svg",
     tagline: "I build software, break it, and write down what I learn along the way.",
     bio: "Welcome to my corner of the internet. I work on backend systems and developer tooling, and I use this site to share write-ups, notes and the occasional video about the things I'm building.",
-    // Short line shown on the badge under your photo. Set to "" to hide it.
-    status: "Open to interesting conversations",
     email: "", // e.g. "you@example.com" — enables the "Say hello" button and email icon
   },
 
@@ -34,7 +32,7 @@ export default {
     "Writing here more often",
   ],
 
-  // Tools and technologies you enjoy. Shown as chips on the home and about pages.
+  // Tools and technologies you enjoy. Shown on the about page.
   stack: ["Go", "Python", "TypeScript", "PostgreSQL", "Kubernetes", "AWS", "Linux", "Neovim"],
 
   // Top navigation. Add an entry here when you add a new section.

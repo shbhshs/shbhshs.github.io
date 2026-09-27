@@ -1,0 +1,11 @@
+{# Labelled reach-out links (email + site.social, minus RSS). #}
+<ul class="reach">
+  {%- if site.author.email %}
+  <li><a href="mailto:{{ site.author.email }}">{% icon "email" %}Email</a></li>
+  {%- endif %}
+  {%- for s in site.social %}
+  {%- if s.icon != "rss" %}
+  <li><a href="{{ s.url }}"{% if s.url.startsWith("http") %} target="_blank" rel="me noopener"{% endif %}>{% icon s.icon %}{{ s.name }}</a></li>
+  {%- endif %}
+  {%- endfor %}
+</ul>

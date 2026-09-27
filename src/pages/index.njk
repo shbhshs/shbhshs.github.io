@@ -5,44 +5,30 @@ permalink: /
 <div class="container">
   {% include "partials/profile.njk" %}
 
-  {%- if site.now.length or site.stack.length %}
-  <section class="cards-2">
-    {%- if site.now.length %}
-    <div class="card">
-      <h2 class="label">Now</h2>
-      <ul class="now-list">
-        {%- for item in site.now %}<li>{{ item }}</li>{% endfor %}
-      </ul>
-    </div>
-    {%- endif %}
-    {%- if site.stack.length %}
-    <div class="card">
-      <h2 class="label">Toolbox</h2>
-      <ul class="chips">
-        {%- for item in site.stack %}<li>{{ item }}</li>{% endfor %}
-      </ul>
-    </div>
-    {%- endif %}
+  {%- if site.now.length %}
+  <section class="section">
+    <h2 class="section-title">Now</h2>
+    <ul class="plain-list">
+      {%- for item in site.now %}<li>{{ item }}</li>{% endfor %}
+    </ul>
   </section>
   {%- endif %}
 
   <section class="section">
-    <div class="section-head">
-      <h2>Latest writing</h2>
-      <a href="/blog/">All posts {% icon "arrow" %}</a>
-    </div>
-    {%- set postList = collections.posts | head(4) %}
-    {%- if postList.length %}{% include "partials/post-list.njk" %}{% else %}<p class="muted">Nothing here yet — check back soon.</p>{% endif %}
+    <h2 class="section-title">Writing</h2>
+    {%- set postList = collections.posts | head(5) %}
+    {%- if postList.length %}
+    {% include "partials/post-list.njk" %}
+    <p class="more"><a href="/blog/">All posts →</a></p>
+    {%- else %}<p class="muted">Nothing here yet.</p>{% endif %}
   </section>
 
   {%- if collections.videos.length %}
   <section class="section">
-    <div class="section-head">
-      <h2>Latest videos</h2>
-      <a href="/videos/">All videos {% icon "arrow" %}</a>
-    </div>
-    {%- set videoList = collections.videos | head(3) %}
+    <h2 class="section-title">Videos</h2>
+    {%- set videoList = collections.videos | head(2) %}
     {% include "partials/video-grid.njk" %}
+    <p class="more"><a href="/videos/">All videos →</a></p>
   </section>
   {%- endif %}
 </div>

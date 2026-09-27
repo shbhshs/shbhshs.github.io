@@ -1,27 +1,9 @@
-{# Profile hero: photo, name, role, bio, reach-out links. Used on the home page. #}
-{%- set contact = ("mailto:" + site.author.email) if site.author.email else (site.social | first).url %}
+{# Profile intro: photo, name, role, bio and reach-out links. Used on the home page. #}
 <section class="profile">
-  <div class="profile-text">
-    <p class="kicker"><span class="prompt">~$</span> whoami</p>
-    <h1 class="profile-name">{{ site.author.name }}</h1>
-    <p class="profile-role">
-      <span>{{ site.author.role }}</span>
-      {%- if site.author.location %}<span class="dot" aria-hidden="true"></span><span class="with-icon">{% icon "pin" %}{{ site.author.location }}</span>{% endif %}
-    </p>
-    <p class="profile-tagline">{{ site.author.tagline }}</p>
-    <p class="profile-bio">{{ site.author.bio }}</p>
-    <div class="profile-actions">
-      <a class="btn btn-primary" href="/blog/">Read the blog {% icon "arrow" %}</a>
-      <a class="btn btn-ghost" href="{{ contact }}"{% if contact.startsWith("http") %} target="_blank" rel="noopener"{% endif %}>Say hello</a>
-    </div>
-    {% include "partials/social-links.njk" %}
-  </div>
-  <div class="profile-photo">
-    <div class="photo-frame">
-      <img src="{{ site.author.avatar }}" alt="Photo of {{ site.author.name }}" width="400" height="400">
-    </div>
-    {%- if site.author.status %}
-    <p class="status"><span class="status-dot" aria-hidden="true"></span>{{ site.author.status }}</p>
-    {%- endif %}
-  </div>
+  <img class="avatar" src="{{ site.author.avatar }}" alt="Photo of {{ site.author.name }}" width="88" height="88">
+  <h1>{{ site.author.name }}</h1>
+  <p class="role">{{ site.author.role }}{% if site.author.location %} · {{ site.author.location }}{% endif %}</p>
+  <p class="tagline">{{ site.author.tagline }}</p>
+  <p>{{ site.author.bio }}</p>
+  {% include "partials/reach-links.njk" %}
 </section>
