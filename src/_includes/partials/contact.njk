@@ -1,0 +1,11 @@
+{# `contact --list` output: one row per reach-out link. #}
+<dl class="contact">
+  {%- if site.author.email %}
+  <div><dt>{% icon "email" %}email</dt><dd><a href="mailto:{{ site.author.email }}">{{ site.author.email }}</a></dd></div>
+  {%- endif %}
+  {%- for s in site.social %}
+  {%- if s.icon != "rss" %}
+  <div><dt>{% icon s.icon %}{{ s.icon }}</dt><dd><a href="{{ s.url }}"{% if s.url.startsWith("http") %} target="_blank" rel="me noopener"{% endif %}>{{ s.url | prettyUrl }}</a></dd></div>
+  {%- endif %}
+  {%- endfor %}
+</dl>

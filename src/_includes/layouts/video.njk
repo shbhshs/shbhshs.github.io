@@ -1,10 +1,13 @@
 ---
 layout: layouts/base.njk
 ---
+{% from "macros.njk" import prompt %}
 <article class="container post">
-  <header class="page-header">
+  <header class="post-header">
+    {{ prompt("play " + page.fileSlug, "~/videos") }}
     <h1 class="page-title">{{ title }}</h1>
-    <p class="meta"><time datetime="{{ page.date | isoDate }}">{{ page.date | readableDate }}</time>{% if draft %} · <span class="badge">draft</span>{% endif %}</p>
+    <p class="meta"><time datetime="{{ page.date | isoDate }}">{{ page.date | readableDate }}</time>{% if draft %} <span class="dim">·</span> <span class="badge">draft</span>{% endif %}</p>
+    {% include "partials/tags.njk" %}
   </header>
 
   {%- if youtube %}{% youtube youtube, title %}
@@ -16,5 +19,5 @@ layout: layouts/base.njk
     {{ content | safe }}
   </div>
 
-  <footer class="post-footer">{% include "partials/tags.njk" %}</footer>
+  <footer class="post-footer"><p class="more"><a href="/videos/">cd ../ →</a></p></footer>
 </article>

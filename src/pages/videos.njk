@@ -3,11 +3,13 @@ layout: layouts/base.njk
 title: Videos
 permalink: /videos/
 ---
+{% from "macros.njk" import prompt %}
 <div class="container">
-  <header class="page-header">
+  <header class="post-header">
+    {{ prompt("ls", "~/videos") }}
     <h1 class="page-title">Videos</h1>
     <p class="lead">Talks, demos and screencasts.</p>
   </header>
   {%- set videoList = collections.videos %}
-  {%- if videoList.length %}{% include "partials/video-grid.njk" %}{% else %}<p class="muted">No videos yet.</p>{% endif %}
+  {%- if videoList.length %}{% include "partials/video-grid.njk" %}{% else %}<p class="dim">total 0</p>{% endif %}
 </div>

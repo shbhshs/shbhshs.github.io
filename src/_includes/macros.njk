@@ -1,0 +1,4 @@
+{# A shell prompt line:  {{ prompt("ls writing/") }}  ->  ~ $ ls writing/ #}
+{% macro prompt(cmd, path="~") -%}
+<p class="prompt"><span class="prompt-path">{{ path }}</span> <span class="prompt-sign">$</span> <span class="prompt-cmd">{{ cmd }}</span></p>
+{%- endmacro %}

@@ -59,7 +59,8 @@ See `src/videos/2026-09-27-example-video.md`.
 - **Your photo** → drop e.g. `avatar.jpg` (square, ~800px) into `src/assets/img/` and set `author.avatar`
 - **Icons** → `src/_includes/icons.js` (use in templates or posts with `{% icon "linkedin" %}`)
 - **About page** → `src/pages/about.md`
-- **Styles** → `src/assets/css/style.css` (colours are CSS variables at the top; light & dark)
+- **Styles** → `src/assets/css/style.css` (colours are CSS variables at the top: dark is the default, `[data-theme="light"]` is the paper theme)
+- **Fonts** → IBM Plex Mono/Sans, self-hosted from the `@fontsource` packages (see `fonts` in `eleventy.config.js`)
 - **Layouts** → `src/_includes/layouts/` (`base`, `post`, `video`, `page`)
 - **Shortcodes, filters, collections** → `eleventy.config.js`
 

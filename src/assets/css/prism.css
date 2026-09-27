@@ -1,17 +1,15 @@
-/* Minimal Prism token colours that work in light and dark themes. */
-:root { --tk-comment: #6e7781; --tk-keyword: #cf222e; --tk-string: #0a3069; --tk-fn: #8250df; --tk-num: #0550ae; --tk-type: #953800; }
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) { --tk-comment: #8b949e; --tk-keyword: #ff7b72; --tk-string: #a5d6ff; --tk-fn: #d2a8ff; --tk-num: #79c0ff; --tk-type: #ffa657; }
-}
-:root[data-theme="dark"] { --tk-comment: #8b949e; --tk-keyword: #ff7b72; --tk-string: #a5d6ff; --tk-fn: #d2a8ff; --tk-num: #79c0ff; --tk-type: #ffa657; }
+/* Prism token colours for the dark (default) and light (paper) themes. */
+:root { --tk-comment: #6b675e; --tk-keyword: #e8a85c; --tk-string: #a3c48e; --tk-fn: #8fb7d4; --tk-num: #d59bc3; --tk-type: #e0c07a; --tk-punct: #9a958a; }
+:root[data-theme="light"] { --tk-comment: #9a9384; --tk-keyword: #a95f16; --tk-string: #4d7a38; --tk-fn: #2f6590; --tk-num: #94456f; --tk-type: #8a6a12; --tk-punct: #6d685c; }
 
 .token.comment, .token.prolog, .token.doctype, .token.cdata { color: var(--tk-comment); font-style: italic; }
+.token.punctuation { color: var(--tk-punct); }
 .token.keyword, .token.selector, .token.important, .token.atrule, .token.operator.arrow { color: var(--tk-keyword); }
-.token.string, .token.char, .token.attr-value, .token.regex, .token.url { color: var(--tk-string); }
+.token.string, .token.char, .token.attr-value, .token.regex, .token.url, .token.template-string { color: var(--tk-string); }
 .token.function, .token.class-name { color: var(--tk-fn); }
-.token.number, .token.boolean, .token.constant, .token.symbol, .token.property { color: var(--tk-num); }
-.token.tag, .token.builtin, .token.attr-name, .token.variable { color: var(--tk-type); }
-.token.deleted { color: var(--tk-keyword); }
-.token.inserted { color: #1a7f37; }
-.token.bold { font-weight: 700; }
+.token.number, .token.boolean, .token.constant, .token.symbol { color: var(--tk-num); }
+.token.tag, .token.builtin, .token.attr-name, .token.property, .token.variable, .token.parameter { color: var(--tk-type); }
+.token.deleted { color: #e0685b; }
+.token.inserted { color: var(--tk-string); }
+.token.bold { font-weight: 600; }
 .token.italic { font-style: italic; }

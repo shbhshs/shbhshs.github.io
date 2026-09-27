@@ -12,7 +12,7 @@
         <span class="play" aria-hidden="true">{% icon "play" %}</span>
       </span>
       <span class="video-title">{{ video.data.title }}{% if video.data.draft %} <span class="badge">draft</span>{% endif %}</span>
-      <time datetime="{{ video.date | isoDate }}">{{ video.date | readableDate }}</time>
+      <time datetime="{{ video.date | isoDate }}">{{ video.date | isoDate }}</time>
     </a>
   </li>
   {%- endfor %}
