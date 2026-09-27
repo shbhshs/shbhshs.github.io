@@ -3,14 +3,15 @@
   {%- for video in videoList %}
   <li>
     <a href="{{ video.url }}">
-      {%- if video.data.thumbnail %}
-      <img src="{{ video.data.thumbnail }}" alt="" loading="lazy">
-      {%- elif video.data.youtube %}
-      <img src="https://i.ytimg.com/vi/{{ video.data.youtube }}/hqdefault.jpg" alt="" loading="lazy">
-      {%- else %}
-      <span class="thumb-placeholder">▶</span>
-      {%- endif %}
-      <span class="video-title">{{ video.data.title }}</span>
+      <span class="thumb">
+        {%- if video.data.thumbnail %}
+        <img src="{{ video.data.thumbnail }}" alt="" loading="lazy" onerror="this.remove()">
+        {%- elif video.data.youtube %}
+        <img src="https://i.ytimg.com/vi/{{ video.data.youtube }}/hqdefault.jpg" alt="" loading="lazy" onerror="this.remove()">
+        {%- endif %}
+        <span class="play" aria-hidden="true">{% icon "play" %}</span>
+      </span>
+      <span class="video-title">{{ video.data.title }}{% if video.data.draft %} <span class="badge">draft</span>{% endif %}</span>
     </a>
     <time datetime="{{ video.date | isoDate }}">{{ video.date | readableDate }}</time>
   </li>

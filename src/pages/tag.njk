@@ -8,15 +8,19 @@ eleventyComputed:
   title: "#{{ tag }}"
 permalink: /tags/{{ tag | slugify }}/
 ---
-<h1>Tagged “{{ tag }}”</h1>
-{%- set postList = collections.posts | withTag(tag) %}
-{%- if postList.length %}
-<h2>Posts</h2>
-{% include "partials/post-list.njk" %}
-{%- endif %}
-{%- set videoList = collections.videos | withTag(tag) %}
-{%- if videoList.length %}
-<h2>Videos</h2>
-{% include "partials/video-grid.njk" %}
-{%- endif %}
-<p><a href="/tags/">← All tags</a></p>
+<div class="container narrow">
+  <header class="page-header">
+    <a class="back-link" href="/tags/">← All tags</a>
+    <h1 class="page-title">#{{ tag }}</h1>
+  </header>
+  {%- set postList = collections.posts | withTag(tag) %}
+  {%- if postList.length %}
+  <h2 class="label">Posts</h2>
+  {% include "partials/post-list.njk" %}
+  {%- endif %}
+  {%- set videoList = collections.videos | withTag(tag) %}
+  {%- if videoList.length %}
+  <h2 class="label">Videos</h2>
+  {% include "partials/video-grid.njk" %}
+  {%- endif %}
+</div>

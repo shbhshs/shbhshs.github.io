@@ -7,13 +7,18 @@ pagination:
   alias: postList
 permalink: "/blog/{% if pagination.pageNumber > 0 %}page/{{ pagination.pageNumber + 1 }}/{% endif %}"
 ---
-<h1>Blog</h1>
-<p class="lead">Everything I've written, newest first. Subscribe via <a href="/feed.xml">RSS</a>.</p>
-{% include "partials/post-list.njk" %}
+<div class="container narrow">
+  <header class="page-header">
+    <p class="kicker"><span class="prompt">~$</span> ls ./blog</p>
+    <h1 class="page-title">Blog</h1>
+    <p class="lead">Write-ups, notes and things I've learned — newest first. Subscribe via <a href="/feed.xml">RSS</a>.</p>
+  </header>
+  {% include "partials/post-list.njk" %}
 
-{%- if pagination.pages.length > 1 %}
-<nav class="pager" aria-label="Pagination">
-  {%- if pagination.href.previous %}<a href="{{ pagination.href.previous }}">← Newer</a>{% else %}<span></span>{% endif %}
-  {%- if pagination.href.next %}<a href="{{ pagination.href.next }}">Older →</a>{% endif %}
-</nav>
-{%- endif %}
+  {%- if pagination.pages.length > 1 %}
+  <nav class="pager" aria-label="Pagination">
+    {%- if pagination.href.previous %}<a href="{{ pagination.href.previous }}"><small>Previous</small>Newer posts</a>{% else %}<span></span>{% endif %}
+    {%- if pagination.href.next %}<a class="next" href="{{ pagination.href.next }}"><small>Next</small>Older posts</a>{% endif %}
+  </nav>
+  {%- endif %}
+</div>

@@ -2,31 +2,47 @@
 layout: layouts/base.njk
 permalink: /
 ---
-<section class="hero">
-  {%- if site.author.avatar %}
-  <img class="avatar" src="{{ site.author.avatar }}" alt="{{ site.author.name }}">
-  {%- else %}
-  <div class="avatar avatar-initials" aria-hidden="true">{% for w in site.author.name.split(" ") %}{{ w[0] }}{% endfor %}</div>
+<div class="container">
+  {% include "partials/profile.njk" %}
+
+  {%- if site.now.length or site.stack.length %}
+  <section class="cards-2">
+    {%- if site.now.length %}
+    <div class="card">
+      <h2 class="label">Now</h2>
+      <ul class="now-list">
+        {%- for item in site.now %}<li>{{ item }}</li>{% endfor %}
+      </ul>
+    </div>
+    {%- endif %}
+    {%- if site.stack.length %}
+    <div class="card">
+      <h2 class="label">Toolbox</h2>
+      <ul class="chips">
+        {%- for item in site.stack %}<li>{{ item }}</li>{% endfor %}
+      </ul>
+    </div>
+    {%- endif %}
+  </section>
   {%- endif %}
-  <div>
-    <h1>Hi, I'm {{ site.author.name.split(" ")[0] }}.</h1>
-    <p class="lead">{{ site.author.tagline }}</p>
-    <ul class="social">
-      {%- for s in site.social %}<li><a href="{{ s.url }}">{{ s.name }}</a></li>{% endfor %}
-    </ul>
-  </div>
-</section>
 
-<section>
-  <h2 class="section-title">Latest writing <a href="/blog/">All posts →</a></h2>
-  {%- set postList = collections.posts | head(5) %}
-  {%- if postList.length %}{% include "partials/post-list.njk" %}{% else %}<p>Nothing here yet.</p>{% endif %}
-</section>
+  <section class="section">
+    <div class="section-head">
+      <h2>Latest writing</h2>
+      <a href="/blog/">All posts {% icon "arrow" %}</a>
+    </div>
+    {%- set postList = collections.posts | head(4) %}
+    {%- if postList.length %}{% include "partials/post-list.njk" %}{% else %}<p class="muted">Nothing here yet — check back soon.</p>{% endif %}
+  </section>
 
-{%- if collections.videos.length %}
-<section>
-  <h2 class="section-title">Latest videos <a href="/videos/">All videos →</a></h2>
-  {%- set videoList = collections.videos | head(3) %}
-  {% include "partials/video-grid.njk" %}
-</section>
-{%- endif %}
+  {%- if collections.videos.length %}
+  <section class="section">
+    <div class="section-head">
+      <h2>Latest videos</h2>
+      <a href="/videos/">All videos {% icon "arrow" %}</a>
+    </div>
+    {%- set videoList = collections.videos | head(3) %}
+    {% include "partials/video-grid.njk" %}
+  </section>
+  {%- endif %}
+</div>

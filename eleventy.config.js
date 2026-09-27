@@ -1,6 +1,7 @@
 import { feedPlugin } from "@11ty/eleventy-plugin-rss";
 import syntaxHighlight from "@11ty/eleventy-plugin-syntaxhighlight";
 import site from "./src/_data/site.js";
+import { icon } from "./src/_includes/icons.js";
 
 const isProduction = process.env.ELEVENTY_ENV === "production";
 
@@ -20,6 +21,7 @@ export default function (eleventyConfig) {
   });
 
   eleventyConfig.addPassthroughCopy({ "src/assets": "assets" });
+  eleventyConfig.addWatchTarget("src/_includes/icons.js");
   eleventyConfig.addPassthroughCopy({ "src/static": "/" });
 
   // Drafts (`draft: true` in front matter) show up in `npm start` but are skipped in production builds.
@@ -57,6 +59,8 @@ export default function (eleventyConfig) {
   eleventyConfig.addFilter("withTag", (items, tag) => items.filter((i) => (i.data.tags || []).includes(tag)));
 
   // ---- Shortcodes (usable inside any Markdown post) ----------------------
+  // {% icon "linkedin" %} — inline SVG icon, see src/_includes/icons.js
+  eleventyConfig.addShortcode("icon", icon);
   // {% youtube "dQw4w9WgXcQ" %}  or  {% youtube "dQw4w9WgXcQ", "Optional title" %}
   eleventyConfig.addShortcode("youtube", (id, title = "YouTube video") =>
     `<div class="embed"><iframe src="https://www.youtube-nocookie.com/embed/${id}" title="${title}" loading="lazy" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div>`

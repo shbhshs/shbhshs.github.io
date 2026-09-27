@@ -1,0 +1,9 @@
+{# Icon buttons for every entry in site.social (plus email if set). #}
+<ul class="social-links">
+  {%- if site.author.email %}
+  <li><a href="mailto:{{ site.author.email }}" aria-label="Email" title="Email">{% icon "email" %}</a></li>
+  {%- endif %}
+  {%- for s in site.social %}
+  <li><a href="{{ s.url }}" aria-label="{{ s.name }}" title="{{ s.name }}"{% if s.url.startsWith("http") %} target="_blank" rel="me noopener"{% endif %}>{% icon s.icon %}</a></li>
+  {%- endfor %}
+</ul>

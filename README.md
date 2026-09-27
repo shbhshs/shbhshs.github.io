@@ -55,7 +55,9 @@ See `src/videos/2026-09-27-example-video.md`.
 
 ## Customising
 
-- **Name, bio, social links, nav** → `src/_data/site.js`
+- **Name, role, bio, photo, social links, "Now", toolbox, nav** → `src/_data/site.js`
+- **Your photo** → drop e.g. `avatar.jpg` (square, ~800px) into `src/assets/img/` and set `author.avatar`
+- **Icons** → `src/_includes/icons.js` (use in templates or posts with `{% icon "linkedin" %}`)
 - **About page** → `src/pages/about.md`
 - **Styles** → `src/assets/css/style.css` (colours are CSS variables at the top; light & dark)
 - **Layouts** → `src/_includes/layouts/` (`base`, `post`, `video`, `page`)

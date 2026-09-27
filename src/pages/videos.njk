@@ -3,7 +3,12 @@ layout: layouts/base.njk
 title: Videos
 permalink: /videos/
 ---
-<h1>Videos</h1>
-<p class="lead">Talks, demos and screencasts.</p>
-{%- set videoList = collections.videos %}
-{%- if videoList.length %}{% include "partials/video-grid.njk" %}{% else %}<p>No videos yet.</p>{% endif %}
+<div class="container">
+  <header class="page-header">
+    <p class="kicker"><span class="prompt">~$</span> ls ./videos</p>
+    <h1 class="page-title">Videos</h1>
+    <p class="lead">Talks, demos and screencasts.</p>
+  </header>
+  {%- set videoList = collections.videos %}
+  {%- if videoList.length %}{% include "partials/video-grid.njk" %}{% else %}<p class="muted">No videos yet — stay tuned.</p>{% endif %}
+</div>

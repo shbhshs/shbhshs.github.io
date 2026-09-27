@@ -1,12 +1,20 @@
 {# Expects `postList` to be set by the caller. #}
 <ul class="post-list">
   {%- for post in postList %}
-  <li>
-    <time datetime="{{ post.date | isoDate }}">{{ post.date | readableDate }}</time>
-    <div>
-      <a href="{{ post.url }}">{{ post.data.title }}</a>{% if post.data.draft %} <span class="badge">draft</span>{% endif %}
-      {%- if post.data.summary %}<p>{{ post.data.summary }}</p>{% endif %}
-    </div>
+  <li class="post-card">
+    <a href="{{ post.url }}">
+      <span class="post-meta">
+        <time datetime="{{ post.date | isoDate }}">{{ post.date | readableDate }}</time>
+        {%- if post.data.draft %} <span class="badge">draft</span>{% endif %}
+      </span>
+      <span class="post-title">{{ post.data.title }}</span>
+      {%- if post.data.summary %}<span class="post-summary">{{ post.data.summary }}</span>{% endif %}
+      {%- set visible = post.data.tags | publicTags %}
+      {%- if visible.length %}
+      <span class="post-tags">{% for t in visible %}<span>#{{ t }}</span>{% endfor %}</span>
+      {%- endif %}
+      <span class="post-arrow" aria-hidden="true">{% icon "arrow" %}</span>
+    </a>
   </li>
   {%- endfor %}
 </ul>
