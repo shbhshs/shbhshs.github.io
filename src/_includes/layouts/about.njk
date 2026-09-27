@@ -1,22 +1,29 @@
 ---
 layout: layouts/base.njk
 ---
-<article class="container">
-  <header class="page-header about-header">
-    <img class="avatar" src="{{ site.author.avatar }}" alt="Photo of {{ site.author.name }}" width="88" height="88">
-    <h1 class="page-title">{{ title }}</h1>
+{% from "macros.njk" import prompt %}
+<article class="container post">
+  <header class="post-header">
+    {{ prompt("cat about.md") }}
+    <div class="whoami">
+      <img class="avatar" src="{{ site.author.avatar }}" alt="Photo of {{ site.author.name }}" width="96" height="96">
+      <div>
+        <h1>{{ site.author.name }}</h1>
+        <p class="role">{{ site.author.role }}{% if site.author.location %} <span class="dim">@</span> {{ site.author.location }}{% endif %}</p>
+      </div>
+    </div>
   </header>
   <div class="prose">
     {{ content | safe }}
   </div>
   {%- if site.stack.length %}
-  <section class="section">
-    <h2 class="section-title">Toolbox</h2>
-    <p class="muted">{{ site.stack | join(" · ") }}</p>
+  <section class="block">
+    {{ prompt("cat toolbox.txt") }}
+    <p class="toolbox">{% for item in site.stack %}<span>{{ item }}</span>{% endfor %}</p>
   </section>
   {%- endif %}
-  <section class="section">
-    <h2 class="section-title">Elsewhere</h2>
-    {% include "partials/reach-links.njk" %}
+  <section class="block">
+    {{ prompt("contact --list") }}
+    {% include "partials/contact.njk" %}
   </section>
 </article>

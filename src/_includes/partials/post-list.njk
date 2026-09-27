@@ -1,10 +1,11 @@
-{# Expects `postList` to be set by the caller. #}
+{# `ls -l`-style rows. Expects `postList` to be set by the caller. #}
 <ul class="post-list">
   {%- for post in postList %}
   <li>
     <a href="{{ post.url }}">
+      <time datetime="{{ post.date | isoDate }}">{{ post.date | isoDate }}</time>
       <span class="post-title">{{ post.data.title }}{% if post.data.draft %} <span class="badge">draft</span>{% endif %}</span>
-      <time datetime="{{ post.date | isoDate }}">{{ post.date | readableDate }}</time>
+      <span class="post-tags">{% for t in post.data.tags | publicTags | head(2) %}#{{ t }} {% endfor %}</span>
     </a>
   </li>
   {%- endfor %}

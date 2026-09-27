@@ -1,13 +1,16 @@
+{%- set crumbs = page.url | replace(r/(index)?\.html$/, "") | replace(r/\/$/, "") %}
 <header class="site-header">
   <div class="container header-inner">
-    <a class="brand" href="/">{{ site.title }}</a>
+    <a class="brand" href="/" aria-label="{{ site.title }} — home">
+      <span class="brand-user">~/shubham</span><span class="brand-path">{{ crumbs }}</span>
+    </a>
     <nav aria-label="Main">
       <ul>
         {%- for item in site.nav %}
-        <li><a href="{{ item.url }}"{% if page.url.startsWith(item.url) %} aria-current="page"{% endif %}>{{ item.label }}</a></li>
+        <li><a href="{{ item.url }}"{% if page.url.startsWith(item.url) %} aria-current="page"{% endif %}>{{ item.label | lower }}</a></li>
         {%- endfor %}
         <li>
-          <button class="theme-toggle" type="button" aria-label="Toggle dark mode" title="Toggle dark mode">
+          <button class="theme-toggle" type="button" aria-label="Toggle light/dark theme" title="Toggle theme">
             <span class="icon-sun">{% icon "sun" %}</span><span class="icon-moon">{% icon "moon" %}</span>
           </button>
         </li>

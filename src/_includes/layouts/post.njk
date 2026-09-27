@@ -1,13 +1,17 @@
 ---
 layout: layouts/base.njk
 ---
+{% from "macros.njk" import prompt %}
 <article class="container post">
-  <header class="page-header">
+  <header class="post-header">
+    {{ prompt("cat " + page.fileSlug + ".md", "~/blog") }}
     <h1 class="page-title">{{ title }}</h1>
     <p class="meta">
-      <time datetime="{{ page.date | isoDate }}">{{ page.date | readableDate }}</time> · {{ content | readingTime }}
-      {%- if draft %} · <span class="badge">draft</span>{% endif %}
+      <time datetime="{{ page.date | isoDate }}">{{ page.date | readableDate }}</time>
+      <span class="dim">·</span> {{ content | readingTime }}
+      {%- if draft %} <span class="dim">·</span> <span class="badge">draft</span>{% endif %}
     </p>
+    {% include "partials/tags.njk" %}
   </header>
 
   {%- if youtube %}{% youtube youtube, title %}{% endif %}
@@ -16,15 +20,15 @@ layout: layouts/base.njk
     {{ content | safe }}
   </div>
 
+  {%- set prev = collections.posts | getNextCollectionItem(page) %}
+  {%- set next = collections.posts | getPreviousCollectionItem(page) %}
   <footer class="post-footer">
-    {% include "partials/tags.njk" %}
-    {%- set prev = collections.posts | getNextCollectionItem(page) %}
-    {%- set next = collections.posts | getPreviousCollectionItem(page) %}
     {%- if prev or next %}
     <nav class="pager" aria-label="More posts">
-      {%- if prev %}<a href="{{ prev.url }}">← {{ prev.data.title }}</a>{% else %}<span></span>{% endif %}
-      {%- if next %}<a class="next" href="{{ next.url }}">{{ next.data.title }} →</a>{% endif %}
+      {%- if prev %}<a href="{{ prev.url }}"><span class="dim">← prev</span>{{ prev.data.title }}</a>{% else %}<span></span>{% endif %}
+      {%- if next %}<a class="next" href="{{ next.url }}"><span class="dim">next →</span>{{ next.data.title }}</a>{% endif %}
     </nav>
     {%- endif %}
+    <p class="more"><a href="/blog/">cd ../ →</a></p>
   </footer>
 </article>

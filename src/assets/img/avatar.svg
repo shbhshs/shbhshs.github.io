@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400">
   <!-- Placeholder avatar. Replace with a real photo (see src/_data/site.js). -->
-  <rect width="400" height="400" fill="#e7e5e0"/>
-  <circle cx="200" cy="165" r="70" fill="#b9b5ad"/>
-  <path d="M70 400c0-80 58-135 130-135s130 55 130 135z" fill="#b9b5ad"/>
+  <rect width="400" height="400" fill="#23221e"/>
+  <circle cx="200" cy="165" r="70" fill="#4a4740"/>
+  <path d="M70 400c0-80 58-135 130-135s130 55 130 135z" fill="#4a4740"/>
 </svg>

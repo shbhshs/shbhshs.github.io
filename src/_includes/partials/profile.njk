@@ -1,9 +1,0 @@
-{# Profile intro: photo, name, role, bio and reach-out links. Used on the home page. #}
-<section class="profile">
-  <img class="avatar" src="{{ site.author.avatar }}" alt="Photo of {{ site.author.name }}" width="88" height="88">
-  <h1>{{ site.author.name }}</h1>
-  <p class="role">{{ site.author.role }}{% if site.author.location %} · {{ site.author.location }}{% endif %}</p>
-  <p class="tagline">{{ site.author.tagline }}</p>
-  <p>{{ site.author.bio }}</p>
-  {% include "partials/reach-links.njk" %}
-</section>

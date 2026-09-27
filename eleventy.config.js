@@ -3,6 +3,11 @@ import syntaxHighlight from "@11ty/eleventy-plugin-syntaxhighlight";
 import site from "./src/_data/site.js";
 import { icon } from "./src/_includes/icons.js";
 
+const fonts = {
+  "ibm-plex-mono": ["400-normal", "500-normal", "600-normal", "400-italic"].map((w) => `ibm-plex-mono-latin-${w}.woff2`),
+  "ibm-plex-sans": ["400-normal", "400-italic", "500-normal", "600-normal"].map((w) => `ibm-plex-sans-latin-${w}.woff2`),
+};
+
 const isProduction = process.env.ELEVENTY_ENV === "production";
 
 export default function (eleventyConfig) {
@@ -23,6 +28,12 @@ export default function (eleventyConfig) {
   eleventyConfig.addPassthroughCopy({ "src/assets": "assets" });
   eleventyConfig.addWatchTarget("src/_includes/icons.js");
   eleventyConfig.addPassthroughCopy({ "src/static": "/" });
+  // Self-hosted fonts (IBM Plex), copied straight from the @fontsource packages.
+  for (const [pkg, files] of Object.entries(fonts)) {
+    for (const file of files) {
+      eleventyConfig.addPassthroughCopy({ [`node_modules/@fontsource/${pkg}/files/${file}`]: `assets/fonts/${file}` });
+    }
+  }
 
   // Drafts (`draft: true` in front matter) show up in `npm start` but are skipped in production builds.
   eleventyConfig.addPreprocessor("drafts", "*", (data) => {
@@ -56,6 +67,11 @@ export default function (eleventyConfig) {
     const words = content.replace(/<[^>]+>/g, " ").split(/\s+/).filter(Boolean).length;
     return `${Math.max(1, Math.round(words / 220))} min read`;
   });
+  // "https://www.linkedin.com/in/me/" -> "linkedin.com/in/me"
+  eleventyConfig.addFilter("prettyUrl", (url = "") =>
+    url.replace(/^mailto:/, "").replace(/^https?:\/\//, "").replace(/^www\./, "").replace(/\/$/, "")
+  );
+  eleventyConfig.addFilter("year", (date) => new Date(date).getUTCFullYear());
   eleventyConfig.addFilter("withTag", (items, tag) => items.filter((i) => (i.data.tags || []).includes(tag)));
 
   // ---- Shortcodes (usable inside any Markdown post) ----------------------

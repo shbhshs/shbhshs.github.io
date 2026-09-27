@@ -3,11 +3,15 @@ layout: layouts/base.njk
 title: Tags
 permalink: /tags/
 ---
+{% from "macros.njk" import prompt %}
 <div class="container">
-  <header class="page-header"><h1 class="page-title">Tags</h1></header>
-  <ul class="tag-list">
+  <header class="post-header">
+    {{ prompt("ls", "~/tags") }}
+    <h1 class="page-title">Tags</h1>
+  </header>
+  <ul class="tag-index">
     {%- for tag in collections.tagList %}
-    <li><a href="/tags/{{ tag | slugify }}/">#{{ tag }}</a> <span class="muted">{{ collections[tag].length }}</span></li>
+    <li><a href="/tags/{{ tag | slugify }}/">#{{ tag }}</a><span class="dim">{{ collections[tag].length }}</span></li>
     {%- endfor %}
   </ul>
 </div>

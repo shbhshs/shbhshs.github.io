@@ -1,8 +1,7 @@
-// Light/dark toggle. Defaults to the OS preference; remembers an explicit choice.
+// Theme toggle. Dark is the default; an explicit choice is remembered.
 document.querySelector(".theme-toggle")?.addEventListener("click", () => {
   const root = document.documentElement;
-  const current = root.dataset.theme || (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
-  const next = current === "dark" ? "light" : "dark";
+  const next = root.dataset.theme === "light" ? "dark" : "light";
   root.dataset.theme = next;
   try { localStorage.setItem("theme", next); } catch (e) {}
 });

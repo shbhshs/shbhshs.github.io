@@ -8,20 +8,20 @@ eleventyComputed:
   title: "#{{ tag }}"
 permalink: /tags/{{ tag | slugify }}/
 ---
+{% from "macros.njk" import prompt %}
 <div class="container">
-  <header class="page-header">
+  <header class="post-header">
+    {{ prompt("grep -l '#" + tag + "' *", "~/tags") }}
     <h1 class="page-title">#{{ tag }}</h1>
-    <p class="lead"><a href="/tags/">All tags</a></p>
   </header>
   {%- set postList = collections.posts | withTag(tag) %}
-  {%- if postList.length %}
-  {% include "partials/post-list.njk" %}
-  {%- endif %}
+  {%- if postList.length %}{% include "partials/post-list.njk" %}{% endif %}
   {%- set videoList = collections.videos | withTag(tag) %}
   {%- if videoList.length %}
-  <section class="section">
-    <h2 class="section-title">Videos</h2>
+  <section class="block">
+    <h2 class="year-title">videos</h2>
     {% include "partials/video-grid.njk" %}
   </section>
   {%- endif %}
+  <p class="more"><a href="/tags/">cd ../ →</a></p>
 </div>
