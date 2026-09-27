@@ -1,0 +1,29 @@
+---
+layout: layouts/base.njk
+---
+<article class="post">
+  <header class="post-header">
+    <h1>{{ title }}</h1>
+    <p class="meta">
+      <time datetime="{{ page.date | isoDate }}">{{ page.date | readableDate }}</time>
+      · {{ content | readingTime }}
+      {%- if draft %} · <span class="badge">draft</span>{% endif %}
+    </p>
+    {% include "partials/tags.njk" %}
+  </header>
+
+  {%- if youtube %}{% youtube youtube, title %}{% endif %}
+
+  <div class="prose">
+    {{ content | safe }}
+  </div>
+
+  {%- set prev = collections.posts | getNextCollectionItem(page) %}
+  {%- set next = collections.posts | getPreviousCollectionItem(page) %}
+  {%- if prev or next %}
+  <nav class="pager" aria-label="More posts">
+    {%- if prev %}<a href="{{ prev.url }}">← {{ prev.data.title }}</a>{% else %}<span></span>{% endif %}
+    {%- if next %}<a href="{{ next.url }}">{{ next.data.title }} →</a>{% endif %}
+  </nav>
+  {%- endif %}
+</article>

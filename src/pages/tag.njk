@@ -1,0 +1,22 @@
+---
+layout: layouts/base.njk
+pagination:
+  data: collections.tagList
+  size: 1
+  alias: tag
+eleventyComputed:
+  title: "#{{ tag }}"
+permalink: /tags/{{ tag | slugify }}/
+---
+<h1>Tagged “{{ tag }}”</h1>
+{%- set postList = collections.posts | withTag(tag) %}
+{%- if postList.length %}
+<h2>Posts</h2>
+{% include "partials/post-list.njk" %}
+{%- endif %}
+{%- set videoList = collections.videos | withTag(tag) %}
+{%- if videoList.length %}
+<h2>Videos</h2>
+{% include "partials/video-grid.njk" %}
+{%- endif %}
+<p><a href="/tags/">← All tags</a></p>

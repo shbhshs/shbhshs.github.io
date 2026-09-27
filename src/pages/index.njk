@@ -1,0 +1,32 @@
+---
+layout: layouts/base.njk
+permalink: /
+---
+<section class="hero">
+  {%- if site.author.avatar %}
+  <img class="avatar" src="{{ site.author.avatar }}" alt="{{ site.author.name }}">
+  {%- else %}
+  <div class="avatar avatar-initials" aria-hidden="true">{% for w in site.author.name.split(" ") %}{{ w[0] }}{% endfor %}</div>
+  {%- endif %}
+  <div>
+    <h1>Hi, I'm {{ site.author.name.split(" ")[0] }}.</h1>
+    <p class="lead">{{ site.author.tagline }}</p>
+    <ul class="social">
+      {%- for s in site.social %}<li><a href="{{ s.url }}">{{ s.name }}</a></li>{% endfor %}
+    </ul>
+  </div>
+</section>
+
+<section>
+  <h2 class="section-title">Latest writing <a href="/blog/">All posts →</a></h2>
+  {%- set postList = collections.posts | head(5) %}
+  {%- if postList.length %}{% include "partials/post-list.njk" %}{% else %}<p>Nothing here yet.</p>{% endif %}
+</section>
+
+{%- if collections.videos.length %}
+<section>
+  <h2 class="section-title">Latest videos <a href="/videos/">All videos →</a></h2>
+  {%- set videoList = collections.videos | head(3) %}
+  {% include "partials/video-grid.njk" %}
+</section>
+{%- endif %}

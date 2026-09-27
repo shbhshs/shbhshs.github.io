@@ -1,0 +1,7 @@
+<footer class="site-footer">
+  <div class="container">
+    <p>© {{ build.year }} {{ site.author.name }} ·
+      {%- for s in site.social %} <a href="{{ s.url }}">{{ s.name }}</a>{% if not loop.last %} ·{% endif %}{% endfor %}
+    </p>
+  </div>
+</footer>

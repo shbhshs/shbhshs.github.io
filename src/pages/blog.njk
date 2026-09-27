@@ -1,0 +1,19 @@
+---
+layout: layouts/base.njk
+title: Blog
+pagination:
+  data: collections.posts
+  size: 20
+  alias: postList
+permalink: "/blog/{% if pagination.pageNumber > 0 %}page/{{ pagination.pageNumber + 1 }}/{% endif %}"
+---
+<h1>Blog</h1>
+<p class="lead">Everything I've written, newest first. Subscribe via <a href="/feed.xml">RSS</a>.</p>
+{% include "partials/post-list.njk" %}
+
+{%- if pagination.pages.length > 1 %}
+<nav class="pager" aria-label="Pagination">
+  {%- if pagination.href.previous %}<a href="{{ pagination.href.previous }}">← Newer</a>{% else %}<span></span>{% endif %}
+  {%- if pagination.href.next %}<a href="{{ pagination.href.next }}">Older →</a>{% endif %}
+</nav>
+{%- endif %}
