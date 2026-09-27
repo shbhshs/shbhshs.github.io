@@ -1,15 +1,6 @@
 <footer class="site-footer">
-  <div class="container">
-    <div class="footer-cta">
-      <div>
-        <h2>Let's connect</h2>
-        <p>Questions, ideas, or just want to say hi? I'm always happy to chat.</p>
-      </div>
-      {% include "partials/social-links.njk" %}
-    </div>
-    <div class="footer-bottom">
-      <p>© {{ build.year }} {{ site.author.name }}</p>
-      <p>Built with <a href="https://www.11ty.dev/">Eleventy</a> · <a href="/feed.xml">RSS</a></p>
-    </div>
+  <div class="container footer-inner">
+    <p>© {{ build.year }} {{ site.author.name }}</p>
+    {% include "partials/social-links.njk" %}
   </div>
 </footer>

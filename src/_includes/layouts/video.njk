@@ -1,12 +1,10 @@
 ---
 layout: layouts/base.njk
 ---
-<article class="container narrow post">
-  <header class="post-header">
-    <a class="back-link" href="/videos/">← All videos</a>
+<article class="container post">
+  <header class="page-header">
     <h1 class="page-title">{{ title }}</h1>
-    <p class="muted"><time datetime="{{ page.date | isoDate }}">{{ page.date | readableDate }}</time>{% if draft %} · <span class="badge">draft</span>{% endif %}</p>
-    {% include "partials/tags.njk" %}
+    <p class="meta"><time datetime="{{ page.date | isoDate }}">{{ page.date | readableDate }}</time>{% if draft %} · <span class="badge">draft</span>{% endif %}</p>
   </header>
 
   {%- if youtube %}{% youtube youtube, title %}
@@ -17,4 +15,6 @@ layout: layouts/base.njk
   <div class="prose">
     {{ content | safe }}
   </div>
+
+  <footer class="post-footer">{% include "partials/tags.njk" %}</footer>
 </article>

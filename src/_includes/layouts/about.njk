@@ -1,22 +1,22 @@
 ---
 layout: layouts/base.njk
 ---
-<div class="container about">
-  <aside class="about-card card">
-    <div class="photo-frame small"><img src="{{ site.author.avatar }}" alt="Photo of {{ site.author.name }}" width="240" height="240"></div>
-    <h2>{{ site.author.name }}</h2>
-    <p class="muted">{{ site.author.role }}{% if site.author.location %} · {{ site.author.location }}{% endif %}</p>
-    {% include "partials/social-links.njk" %}
-    {%- if site.stack.length %}
-    <h3 class="label">Toolbox</h3>
-    <ul class="chips">{% for item in site.stack %}<li>{{ item }}</li>{% endfor %}</ul>
-    {%- endif %}
-  </aside>
-  <article>
-    <p class="kicker"><span class="prompt">~$</span> cat about.md</p>
+<article class="container">
+  <header class="page-header about-header">
+    <img class="avatar" src="{{ site.author.avatar }}" alt="Photo of {{ site.author.name }}" width="88" height="88">
     <h1 class="page-title">{{ title }}</h1>
-    <div class="prose">
-      {{ content | safe }}
-    </div>
-  </article>
-</div>
+  </header>
+  <div class="prose">
+    {{ content | safe }}
+  </div>
+  {%- if site.stack.length %}
+  <section class="section">
+    <h2 class="section-title">Toolbox</h2>
+    <p class="muted">{{ site.stack | join(" · ") }}</p>
+  </section>
+  {%- endif %}
+  <section class="section">
+    <h2 class="section-title">Elsewhere</h2>
+    {% include "partials/reach-links.njk" %}
+  </section>
+</article>

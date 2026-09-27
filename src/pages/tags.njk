@@ -3,15 +3,11 @@ layout: layouts/base.njk
 title: Tags
 permalink: /tags/
 ---
-<div class="container narrow">
-  <header class="page-header">
-    <p class="kicker"><span class="prompt">~$</span> ls ./tags</p>
-    <h1 class="page-title">Tags</h1>
-    <p class="lead">Browse everything by topic.</p>
-  </header>
-  <ul class="tag-cloud">
+<div class="container">
+  <header class="page-header"><h1 class="page-title">Tags</h1></header>
+  <ul class="tag-list">
     {%- for tag in collections.tagList %}
-    <li><a href="/tags/{{ tag | slugify }}/">#{{ tag }} <span>{{ collections[tag].length }}</span></a></li>
+    <li><a href="/tags/{{ tag | slugify }}/">#{{ tag }}</a> <span class="muted">{{ collections[tag].length }}</span></li>
     {%- endfor %}
   </ul>
 </div>
